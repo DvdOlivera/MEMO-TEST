@@ -3,6 +3,7 @@
 document.querySelector("#boton-iniciar").addEventListener("click",iniciarPartida)
 
 function iniciarPartida (){
+  contador = 0;
   resetTimer();
   startTimer();
   movimientosUsuario = [];
