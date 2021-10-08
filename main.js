@@ -165,22 +165,7 @@ let [milliseconds,seconds,minutes,hours] = [0,0,0,0];
 let timerRef = document.querySelector(".timer-display");
 let int = null;
 
-document.querySelector("#startTimer").addEventListener('click', ()=>{
-    if(int!==null){
-        clearInterval(int);
-    }
-    int = setInterval(displayTimer,10);
-});
 
-document.querySelector("#pauseTimer").addEventListener('click', ()=>{
-    clearInterval(int);
-});
-
-document.querySelector("#resetTimer").addEventListener('click', ()=>{
-    clearInterval(int);
-    [milliseconds,seconds,minutes,hours] = [0,0,0,0];
-    timerRef.innerHTML = ' 00 : 00 : 000 ';
-});
 
 function displayTimer(){
     milliseconds+=10;
