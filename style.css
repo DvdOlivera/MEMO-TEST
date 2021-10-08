@@ -18,7 +18,15 @@ display: flex;
 
 
 }
-
+.timer-display{
+    width: 90%;
+    margin:auto;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.719);
+    margin-top: 30px;
+    font-weight: 300;
+    font-size: 60px;
+}
 
 .area-de-juego{
      
@@ -218,6 +226,11 @@ display: flex;
       "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto" 100px/
       75px 75px 75px 75px;
     }  
+    .timer-display{
+        margin-top: 30px;
+        font-weight: 300;
+        font-size: 40px;
+    }
   }
   @media (max-width:360px){
     .area-de-juego{
