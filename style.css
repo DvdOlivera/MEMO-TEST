@@ -1,0 +1,235 @@
+html{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-image: url("./Ciudad-Gotica.jpg"); 
+    background-size: cover;
+    
+}
+#container{
+
+width: 100%;
+
+display: flex;
+
+
+}
+
+
+.area-de-juego{
+     
+    width: 70%;
+    background-position: center;
+    padding-top: 25px;
+
+    justify-content: center;
+    display: grid;
+    grid-template-areas: 
+    "primero segundo tercero cuarto"
+    "quinto sexto septimo octavo"
+    "noveno decimo decimo-primero decimo-segundo"
+    "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto";
+    -webkit-perspective: 800;
+    perspective: 800;
+    gap: 15px;
+    grid-template:
+    "primero segundo tercero cuarto" 200px
+    "quinto sexto septimo octavo" 200px
+    "noveno decimo decimo-primero decimo-segundo" 200px
+    "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto" 200px/
+    150px 150px 150px 150px;
+}
+#boton-iniciar{
+   margin-top: 30px;   
+   cursor: pointer;   
+   color: cornsilk;
+   width: 200px;
+   height:80px;
+   border: 5px solid rgb(74, 25, 187);
+   border-radius: 15px;
+   background-color: rgb(22, 11, 27);
+   font-size: 20px;
+   font-family: 'Black Ops One', cursive; 
+}
+#boton-iniciar:hover{
+  
+    transition: 0.3s;
+    
+    background-color: rgb(255, 196, 0);
+    color: rgb(8, 8, 37);
+}
+
+.adelante, .atras{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+
+.opciones-de-juego{
+    
+    width: 30%;
+    text-align: center;
+    color:rgb(255, 251, 22);
+    
+    background-color: rgba(0, 0, 0, 0);
+}
+.opciones-de-juego p {
+    padding: 5px;
+  
+    
+    font-family: 'Stalinist One', cursive;
+}
+.robin{
+    background-image: url("./robin.png");
+}
+.batwoman{
+    background-image: url("./batwoman.png");
+}
+.batman{
+    background-image: url("./batman.png");
+}
+.joker{
+    background-image: url("./joker.png");
+}
+.dos-caras{
+    background-image: url("./dos-caras.png");
+}
+.alfred{
+    background-image: url("./alfred.png");
+}
+.harley{
+    background-image: url("./harley.png");
+}
+.acertijo{
+    background-image: url("./acertijo.png");
+}
+.deshabilitar-click{
+    pointer-events:none
+}
+.atras{
+  
+    background-color: cornsilk;
+    background-size: contain;
+    background-repeat: no-repeat;
+   
+    transform: rotateY(180deg);
+}
+.casillero{
+      
+      background-image: url("./58428ba1a6515b1e0ad75ab0.png");
+      background-size: contain;
+      background-color: rgb(26, 25, 25);
+      position:relative;
+      transform-style: preserve-3d;
+      transition: .7s ease;
+      background-repeat: no-repeat;
+      background-position: center;
+}
+ 
+.rotate{
+    transform: rotateY(180deg);
+}
+
+.primero{
+     grid-area: primero;
+ }
+.segundo{
+     grid-area: segundo;
+ }
+.tercero{
+     grid-area: tercero;
+ }
+.cuarto{
+    grid-area: cuarto;
+}
+.quinto{
+    grid-area: quinto;
+}
+.sexto{
+    grid-area: sexto;
+}
+.septimo{
+    grid-area: septimo;
+}
+.octavo{
+    grid-area: octavo;
+}
+.noveno{
+    grid-area: noveno;
+}
+.decimo{
+    grid-area: decimo;
+}
+.decimo-primero{
+    grid-area: "decimo-primero";
+}
+.decimo-segundo{
+    grid-area: "decimo-segundo";
+}
+.decimo-tercero{
+    grid-area: "decimo-tercero";
+}
+.decimo-cuarto{
+    grid-area: "decimo-cuarto";
+}
+.decimo-quinto{
+    grid-area: "decimo-quinto";
+}
+.decimo-sexto{
+    grid-area: "decimo-sexto";
+}
+
+@media (max-width: 1200px){
+    #container{
+      display:block;
+    }
+    .opciones-de-juego,.area-de-juego{
+    width: 90%;
+    margin: auto;  
+   }
+
+}
+@media (max-width:720px){
+  .area-de-juego{
+    
+    grid-template:
+    "primero segundo tercero cuarto" 140px
+    "quinto sexto septimo octavo" 140px
+    "noveno decimo decimo-primero decimo-segundo" 140px
+    "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto" 140px/
+    105px 105px 105px 105px;
+
+  }  
+
+}
+@media (max-width:480px){
+    .area-de-juego{
+      grid-template:
+      "primero segundo tercero cuarto" 100px
+      "quinto sexto septimo octavo" 100px
+      "noveno decimo decimo-primero decimo-segundo" 100px
+      "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto" 100px/
+      75px 75px 75px 75px;
+    }  
+  }
+  @media (max-width:360px){
+    .area-de-juego{
+      grid-template:
+      "primero segundo tercero cuarto" 64px
+      "quinto sexto septimo octavo" 64px
+      "noveno decimo decimo-primero decimo-segundo" 64px
+      "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto" 64px/
+      48px 48px 48px 48px;
+    }  
+  }
+  
+
+
+
