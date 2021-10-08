@@ -1,5 +1,5 @@
 
-//window.onload = iniciarPartida
+
 document.querySelector("#boton-iniciar").addEventListener("click",iniciarPartida)
 
 function iniciarPartida (){
@@ -44,12 +44,7 @@ function resetTimer(){
   timerRef.innerHTML = '00 : 00 : 00 : 000 ';
 };
 
-//function deshabilitarClick(){
-//  document.querySelectorAll(".casillero").forEach((casilla)=>{
-//    casilla.classList.add("deshabilitar-click");
 
-//  })
-//};
 
 
 
