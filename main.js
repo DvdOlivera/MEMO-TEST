@@ -1,5 +1,3 @@
-
-
 document.querySelector("#boton-iniciar").addEventListener("click",iniciarPartida)
 
 function iniciarPartida (){
@@ -156,7 +154,7 @@ document.querySelectorAll(".casillero").forEach((casilla)=>{
     }, 700);
   };
 
-let [milliseconds,seconds,minutes,hours] = [0,0,0,0];
+let [milliseconds,seconds,minutes] = [0,0,0];
 let timerRef = document.querySelector(".timer-display");
 let int = null;
 
@@ -179,5 +177,6 @@ function displayTimer(){
     let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
 
     timerRef.innerHTML = `${m} : ${s} : ${ms}`;
-}
+};
+
 
