@@ -1,3 +1,5 @@
+
+
 document.querySelector("#boton-iniciar").addEventListener("click",iniciarPartida)
 
 function iniciarPartida (){
@@ -177,6 +179,5 @@ function displayTimer(){
     let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
 
     timerRef.innerHTML = `${m} : ${s} : ${ms}`;
-};
-
+}
 
