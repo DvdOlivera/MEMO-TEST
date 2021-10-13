@@ -6,19 +6,21 @@ body{
     margin: 0;
     padding: 0;
     min-height: 100%;
-    background-image: url("./Ciudad-Gotica.jpg"); 
+    background-image: url("/src/img/Ciudad-Gotica.jpg"); 
+    background-attachment: fixed;
     background-size: cover;
+    background-blend-mode: screen;
     
 }
-#container{
+#contenedor{
 
 width: 100%;
 
 display: flex;
-
+justify-content: center;
 
 }
-.timer-display{
+.cronometro{
     width: 90%;
     margin:auto;
     border-radius: 5px;
@@ -28,29 +30,20 @@ display: flex;
     font-size: 60px;
 }
 
-.area-de-juego{
+#area-de-juego{
      
-    width: 70%;
+    max-width:700px;
     background-position: center;
     padding-top: 25px;
-
+    gap : 10px;
     justify-content: center;
-    display: grid;
-    grid-template-areas: 
-    "primero segundo tercero cuarto"
-    "quinto sexto septimo octavo"
-    "noveno decimo decimo-primero decimo-segundo"
-    "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto";
-    -webkit-perspective: 800;
-    perspective: 800;
-    gap: 15px;
-    grid-template:
-    "primero segundo tercero cuarto" 200px
-    "quinto sexto septimo octavo" 200px
-    "noveno decimo decimo-primero decimo-segundo" 200px
-    "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto" 200px/
-    150px 150px 150px 150px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+   
+    
 }
+
 #boton-iniciar{
    margin-top: 30px;   
    cursor: pointer;   
@@ -71,7 +64,7 @@ display: flex;
     color: rgb(8, 8, 37);
 }
 
-.adelante, .atras{
+.dorsales-casilleros, .frontales-casilleros{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -94,34 +87,11 @@ display: flex;
     
     font-family: 'Stalinist One', cursive;
 }
-.robin{
-    background-image: url("./robin.png");
-}
-.batwoman{
-    background-image: url("./batwoman.png");
-}
-.batman{
-    background-image: url("./batman.png");
-}
-.joker{
-    background-image: url("./joker.png");
-}
-.dos-caras{
-    background-image: url("./dos-caras.png");
-}
-.alfred{
-    background-image: url("./alfred.png");
-}
-.harley{
-    background-image: url("./harley.png");
-}
-.acertijo{
-    background-image: url("./acertijo.png");
-}
+
 .deshabilitar-click{
     pointer-events:none
 }
-.atras{
+.frontales-casilleros{
   
     background-color: cornsilk;
     background-size: contain;
@@ -129,120 +99,65 @@ display: flex;
    
     transform: rotateY(180deg);
 }
-.casillero{
+.casilleros{
       
-      background-image: url("./58428ba1a6515b1e0ad75ab0.png");
+      background-image: url("./src/img/parte-trasera-carta.png");
       background-size: contain;
       background-color: rgb(26, 25, 25);
-      position:relative;
       transform-style: preserve-3d;
       transition: .7s ease;
       background-repeat: no-repeat;
       background-position: center;
+      width: 120px;
+      height: 160px;
 }
  
 .rotate{
     transform: rotateY(180deg);
 }
 
-.primero{
-     grid-area: primero;
- }
-.segundo{
-     grid-area: segundo;
- }
-.tercero{
-     grid-area: tercero;
- }
-.cuarto{
-    grid-area: cuarto;
-}
-.quinto{
-    grid-area: quinto;
-}
-.sexto{
-    grid-area: sexto;
-}
-.septimo{
-    grid-area: septimo;
-}
-.octavo{
-    grid-area: octavo;
-}
-.noveno{
-    grid-area: noveno;
-}
-.decimo{
-    grid-area: decimo;
-}
-.decimo-primero{
-    grid-area: "decimo-primero";
-}
-.decimo-segundo{
-    grid-area: "decimo-segundo";
-}
-.decimo-tercero{
-    grid-area: "decimo-tercero";
-}
-.decimo-cuarto{
-    grid-area: "decimo-cuarto";
-}
-.decimo-quinto{
-    grid-area: "decimo-quinto";
-}
-.decimo-sexto{
-    grid-area: "decimo-sexto";
+@media (max-width: 1200px){
+ .cronometro{
+   font-size: 50px;
+  }
+
 }
 
-@media (max-width: 1200px){
-    #container{
+@media (max-width: 1000px){
+    #contenedor{
       display:block;
     }
-    .opciones-de-juego,.area-de-juego{
+    .opciones-de-juego,#area-de-juego{
     width: 90%;
     margin: auto;  
    }
 
+
 }
 @media (max-width:720px){
-  .area-de-juego{
-    
-    grid-template:
-    "primero segundo tercero cuarto" 140px
-    "quinto sexto septimo octavo" 140px
-    "noveno decimo decimo-primero decimo-segundo" 140px
-    "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto" 140px/
-    105px 105px 105px 105px;
-
-  }  
-
+  .casilleros{
+    width: 105px;
+    height: 140px;
+  }
 }
 @media (max-width:480px){
-    .area-de-juego{
-      grid-template:
-      "primero segundo tercero cuarto" 100px
-      "quinto sexto septimo octavo" 100px
-      "noveno decimo decimo-primero decimo-segundo" 100px
-      "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto" 100px/
-      75px 75px 75px 75px;
-    }  
-    .timer-display{
-        margin-top: 30px;
-        font-weight: 300;
-        font-size: 40px;
+  #boton-iniciar{
+    margin-top: 0px;
+    height: 50px; 
+  }
+  .casilleros{
+    width: 75px;
+    height: 100px;
+  }
+  .cronometro{
+    margin-top: 30px;
+    font-weight: 300;
+    font-size: 40px;
     }
   }
-  @media (max-width:360px){
-    .area-de-juego{
-      grid-template:
-      "primero segundo tercero cuarto" 64px
-      "quinto sexto septimo octavo" 64px
-      "noveno decimo decimo-primero decimo-segundo" 64px
-      "decimo-tercero decimo-cuarto decimo-quinto decimo-sexto" 64px/
-      48px 48px 48px 48px;
-    }  
+@media (max-width:360px){
+  .casilleros{
+    width: 48px;
+    height: 64px;
   }
-  
-
-
-
+ }

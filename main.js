@@ -1,183 +1,138 @@
-
+const imagenesFrontales = ["src/img/joker.png","src/img/batman.png","src/img/alfred.png","src/img/batwoman.png","src/img/acertijo.png",
+"src/img/dent.png","src/img/harley.png","src/img/robin.png","src/img/comodin.png"]
 
 document.querySelector("#boton-iniciar").addEventListener("click",iniciarPartida)
 
 function iniciarPartida (){
+  document.querySelector("#area-de-juego").innerHTML="";
   contador = 0;
-  resetTimer();
-  startTimer();
   movimientosUsuario = [];
-  rotarTodasLasCasillas(); 
-  limpiarCasillero();
-
-  const NuevoOrdenCasilleros= listaAleatoria();
-
-  asignarImagenes(NuevoOrdenCasilleros);
-
+  resetearCronometro();
+  comenzarCronometro();
+  crearCasilleros(imagenesFrontales);
   habilitarClick();
-
 };
 
-function rotarTodasLasCasillas(){
-  document.querySelectorAll(".casillero").forEach((casilla)=>{
-    casilla.classList.remove("rotate")
-
-  })
-};
+function crearCasilleros(imagenes){
+   const listaParesAleatorios= generarParesAleatorios(imagenes.length);
+    for (let i=0;i<(imagenes.length * 2);i++){
+      const casillero = document.createElement("div");
+      casillero.setAttribute("class","casilleros deshabilitar-click");
+      casillero.setAttribute("data-imagen",`${listaParesAleatorios[i]}`); 
+      casillero.onclick = manejarEleccionUsuario;
+      document.querySelector("#area-de-juego").appendChild(casillero)
+      const frontalCasillero =  document.createElement("img");
+      frontalCasillero.setAttribute("class","frontales-casilleros");
+      const dorsalCasillero =  document.createElement("img");
+      dorsalCasillero.setAttribute("class","dorsales-casilleros");
+      document.querySelectorAll(".casilleros")[i].appendChild(dorsalCasillero);
+      document.querySelectorAll(".casilleros")[i].appendChild(frontalCasillero);
+    }
+    asignarImagenesAleatoriasEnCasilleros(listaParesAleatorios,imagenes);
+  };
 
 function habilitarClick(){
-  document.querySelectorAll(".casillero").forEach((casilla)=>{
-    casilla.classList.remove("deshabilitar-click");
-
+  document.querySelectorAll(".casilleros").forEach((casillero)=>{
+    casillero.classList.remove("deshabilitar-click");
   })
 };
 
-function startTimer(){
-  if(int!==null){
-    clearInterval(int);
-}
-int = setInterval(displayTimer,10);
+function comenzarCronometro(){
+  if(intervalo!==null){
+    clearInterval(intervalo);
 };
-function resetTimer(){
-  clearInterval(int);
-  [milliseconds,seconds,minutes,hours] = [0,0,0,0];
-  timerRef.innerHTML = '00 : 00 : 00 : 000 ';
+intervalo = setInterval(mostrarCronometro,10);
+};
+function resetearCronometro(){
+  clearInterval(intervalo);
+  [milisegundos,segundos,minutos] = [0,0,0];
+  timerRef.innerHTML = ' 00 : 00 : 000 ';
 };
 
-
-
-
-
-function limpiarCasillero(){
-  document.querySelectorAll(".atras").forEach((atras)=>{
-    atras.classList.remove("robin","batman","joker","harley","batwoman","alfred","acertijo","dos-caras");
+function asignarImagenesAleatoriasEnCasilleros(listaParesAleatorios,imagenes){
+  document.querySelectorAll(".frontales-casilleros").forEach((frontal,i)=>{
+  frontal.src = imagenes[listaParesAleatorios[i]];
   })
 };
 
-
-function asignarImagenes(orden){
-  i=0;
-  document.querySelectorAll(".atras").forEach((atras)=>{
-  
-    if (orden[i] <= 1){
-      atras.classList.add("robin")
-    }
-    else if(orden[i] <= 3){
-      atras.classList.add("harley")
-    }
-    else if(orden[i] <= 5){
-      atras.classList.add("joker")
-    }
-    else if(orden[i] <= 7){
-      atras.classList.add("batman")
-    }
-    else if(orden[i] <= 9){
-      atras.classList.add("dos-caras")
-    }
-    else if(orden[i] <= 11){
-      atras.classList.add("alfred")
-    }
-    else if(orden[i] <= 13){
-      atras.classList.add("batwoman")
-    }
-    else if(orden[i] <= 15){
-      atras.classList.add("acertijo")
-    }
-
-    
-    
-    i=i+1;
-  })
-};
-
-let movimientosUsuario =[]
+let movimientosUsuario =[];
 let contador = 0;
-document.querySelectorAll(".casillero").forEach((casilla)=>{
-  
-  casilla.addEventListener("click", obtenerEleccionUsuario);
-});
 
-  function obtenerEleccionUsuario(event){
-
-    event.target.classList.add("rotate")
-    movimientosUsuario.push(event.target)
-    compararEleccion()
+function manejarEleccionUsuario(event){
+    let eleccionUsuario = event.target; 
+    mostrarFrontalElegido(eleccionUsuario)
+    compararEleccion(eleccionUsuario);
   };
 
-  function compararEleccion(){
-   if(movimientosUsuario.length === 2){
-    
-    movimientosUsuario[0].lastElementChild.classList.value === movimientosUsuario[1].lastElementChild.classList.value ?
-    (movimientosUsuario[1].classList.add("deshabilitar-click"), contador++ ,finalDelJuego()) : rotarCasillas(movimientosUsuario);
-    
-    movimientosUsuario = [];
-    }
-    else if (movimientosUsuario.length === 1){
-      movimientosUsuario[0].classList.add("deshabilitar-click")
-    }
+ function mostrarFrontalElegido(eleccionUsuario){
+    eleccionUsuario.classList.add("rotate");
   }
-  function listaAleatoria() {
-    let lista = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-    lista = lista.sort(function() {return Math.random() - 0.5});
-    return lista
+  
+function compararEleccion(eleccionUsuario){
+  movimientosUsuario.push(eleccionUsuario);
+  const primeraEleccion = movimientosUsuario[0];
+    if(movimientosUsuario.length === 2){
+    const segundaEleccion = movimientosUsuario[1];
+    primeraEleccion.dataset.imagen === segundaEleccion.dataset.imagen ?
+    (segundaEleccion.classList.add("deshabilitar-click"), contador++) : rotarCasillerosSeleccionados(movimientosUsuario);
+    movimientosUsuario = [];
+    if (contador === imagenesFrontales.length){
+      finalizarJuego();
+    };
+   } 
+   else { 
+      primeraEleccion.classList.add("deshabilitar-click");
+    };
+  }
+
+  function generarParesAleatorios(cantidadImagenes) {
+    let paresAleatorios = [];
+    for (let i=0;i<cantidadImagenes;i++){
+      paresAleatorios.push(i)
+      paresAleatorios.push(i)
+    };
+    paresAleatorios.sort(function() {return Math.random() - 0.5});
+    return paresAleatorios;
  }
 
- function finalDelJuego(){
-   if (contador === 8){
-    clearInterval(int);
-    contador = 0;
-   }
+function finalizarJuego(){
+  clearInterval(intervalo);
+  contador = 0;
   }
  
-
-  function rotarCasillas(casillas){
-    deshabilitarCasillasTemporalmente();
-    
+  function rotarCasillerosSeleccionados(casilleros){
+    deshabilitarContenedorTemporalmente();
     setTimeout(function(){
-      casillas.forEach((casilla)=>{
-        casilla.classList.remove("rotate","deshabilitar-click");
-  
+      casilleros.forEach((casillero)=>{
+        casillero.classList.remove("rotate","deshabilitar-click");
      })
-      
-    }, 700);
-
-    
-
-
-  
+   }, 700);
   }
 
-  function deshabilitarCasillasTemporalmente(){
-    document.querySelector("#container").classList.add("deshabilitar-click")
+function deshabilitarContenedorTemporalmente(){
+    document.querySelector("#contenedor").classList.add("deshabilitar-click")
     setTimeout(function(){
-
-      document.querySelector("#container").classList.remove("deshabilitar-click")
-      
+      document.querySelector("#contenedor").classList.remove("deshabilitar-click")
     }, 700);
   };
 
-let [milliseconds,seconds,minutes] = [0,0,0];
-let timerRef = document.querySelector(".timer-display");
-let int = null;
+let [milisegundos,segundos,minutos] = [0,0,0];
+let timerRef = document.querySelector(".cronometro");
+let intervalo = null;
+function mostrarCronometro(){
 
-
-
-function displayTimer(){
-    milliseconds+=10;
-    if(milliseconds == 1000){
-        milliseconds = 0;
-        seconds++;
-        if(seconds == 60){
-            seconds = 0;
-            minutes++;
-
-        }
+    milisegundos+=10;
+    if(milisegundos == 1000){
+        milisegundos = 0;
+        segundos++;
+        if(segundos == 60){
+            segundos = 0;
+            minutos++;
+      };
     }
-   
-    let m = minutes < 10 ? "0" + minutes : minutes;
-    let s = seconds < 10 ? "0" + seconds : seconds;
-    let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
-
+    let m = minutos < 10 ? "0" + minutos : minutos;
+    let s = segundos < 10 ? "0" + segundos : segundos;
+    let ms = milisegundos < 10 ? "00" + milisegundos : milisegundos < 100 ? "0" + milisegundos : milisegundos;
     timerRef.innerHTML = `${m} : ${s} : ${ms}`;
 }
 
